@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'model.dart';
@@ -74,10 +75,16 @@ class _Day17State extends State<Day17> {
               borderRadius: const BorderRadius.all(
                 const Radius.circular(12.0),
               ),
-              child: Image.network(
-                heroes[index].image,
+              child: CachedNetworkImage(
+                imageUrl: heroes[index].image,
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
                 fit: BoxFit.cover,
               ),
+              // child: Image.network(
+              //   heroes[index].image,
+              //   fit: BoxFit.cover,
+              // ),
             ),
             // Align 相對定位
             //

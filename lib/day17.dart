@@ -12,11 +12,11 @@ class Day17 extends StatefulWidget {
 }
 
 class _Day17State extends State<Day17> {
-  int _pageIndex = 1;
+  int _pageIndex = 0;
 
   final PageController _pageController = PageController(
-    initialPage: 1,
-    // 顯示其他頁面
+    initialPage: 0,
+    // viewportFraction: 是否撐滿 (default: 1.0)
     viewportFraction: 0.8,
   );
 
@@ -58,6 +58,15 @@ class _Day17State extends State<Day17> {
           borderRadius: const BorderRadius.all(const Radius.circular(12.0)),
         ),
         // Stack 堆疊
+        // 技巧用 Stack 把 圖片跟文字區塊堆疊
+        // 文字區塊用 Align 定位在下方
+        // 用 Expanded 撐滿 Row
+        // stack
+        // |- image
+        // |- Align
+        //    |- Row
+        //       |- Expanded
+        //          |- Text
         child: Stack(
           fit: StackFit.expand,
           children: [
